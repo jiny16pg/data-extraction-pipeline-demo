@@ -1,0 +1,88 @@
+{
+  "id": "DEMO-EBR-001",
+  "title": "Electronic Batch Record",
+  "docType": "EBR",
+  "cardSubtitle": "Digitally generated · Structured extraction",
+  "tag": "Digital PDF",
+  "disclaimer": "Pre-generated demonstration output · Static demonstration using synthetic data",
+  "overview": {
+    "documentType": "Electronic Batch Record",
+    "processingMethod": "Deterministic parser",
+    "pages": 4,
+    "records": 1,
+    "sections": 2,
+    "materialRows": 12,
+    "validationStatus": "Validated"
+  },
+  "pipeline": [
+    { "label": "Digital PDF", "detail": "Machine-generated source" },
+    { "label": "Parse", "detail": "Read text & tables" },
+    { "label": "Canonicalize", "detail": "Organize document structure" },
+    { "label": "Validate", "detail": "Automated quality checks" },
+    { "label": "Tables", "detail": "Records, sections, materials" }
+  ],
+  "records": [
+    {
+      "record_instance_id": "DEMO-EBR-001",
+      "record_ordinal": 1,
+      "document_code": "EBR-DEMO-2201",
+      "description": "Demo Emulsion Base — Standard Production Run",
+      "production_date": "2026-03-14",
+      "manufacturing_site": "Demo Plant North",
+      "batch_size_g": 240000,
+      "source_page_start": 1,
+      "source_page_end": 4
+    }
+  ],
+  "sections": [
+    {
+      "record_instance_id": "DEMO-EBR-001",
+      "section_instance_id": "DEMO-SEC-001",
+      "section_ordinal": 1,
+      "batch_id": "DEMO-BATCH-001",
+      "formula_descriptor": "Demo Emulsion Base Phase A",
+      "variant": "Standard",
+      "target_weight_g": 152000,
+      "target_ph": 6.3,
+      "target_viscosity": 2450,
+      "final_actual_ph": 6.31,
+      "final_actual_viscosity": 2438,
+      "source_pages": "1-2"
+    },
+    {
+      "record_instance_id": "DEMO-EBR-001",
+      "section_instance_id": "DEMO-SEC-002",
+      "section_ordinal": 2,
+      "batch_id": "DEMO-BATCH-002",
+      "formula_descriptor": "Demo Emulsion Base Phase B",
+      "variant": "Standard",
+      "target_weight_g": 88000,
+      "target_ph": 6.4,
+      "target_viscosity": 2500,
+      "final_actual_ph": 6.38,
+      "final_actual_viscosity": 2512,
+      "source_pages": "3-4"
+    }
+  ],
+  "materialRows": [
+    { "record_instance_id": "DEMO-EBR-001", "section_instance_id": "DEMO-SEC-001", "material_line_id": "MAT-DEMO-001", "row_ordinal": 1, "raw_material_name": "Demo Purified Water", "material_reference": "MAT-DEMO-001", "nominal_w_w_pct": 62.5, "target_weight_g": 95000, "actual_weight_g": 95012, "source_page": 1, "raw_value": "95,012 g", "normalized_value": "95012.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-EBR-001", "section_instance_id": "DEMO-SEC-001", "material_line_id": "MAT-DEMO-002", "row_ordinal": 2, "raw_material_name": "Demo Base Emollient A", "material_reference": "MAT-DEMO-002", "nominal_w_w_pct": 12.0, "target_weight_g": 18240, "actual_weight_g": 18228, "source_page": 1, "raw_value": "18,228 g", "normalized_value": "18228.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-EBR-001", "section_instance_id": "DEMO-SEC-001", "material_line_id": "MAT-DEMO-003", "row_ordinal": 3, "raw_material_name": "Demo Emulsifier Blend", "material_reference": "MAT-DEMO-003", "nominal_w_w_pct": 6.5, "target_weight_g": 9880, "actual_weight_g": 9884, "source_page": 1, "raw_value": "9,884 g", "normalized_value": "9884.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-EBR-001", "section_instance_id": "DEMO-SEC-001", "material_line_id": "MAT-DEMO-004", "row_ordinal": 4, "raw_material_name": "Demo Thickener A", "material_reference": "MAT-DEMO-004", "nominal_w_w_pct": 3.2, "target_weight_g": 4864, "actual_weight_g": 4860, "source_page": 2, "raw_value": "4,860 g", "normalized_value": "4860.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-EBR-001", "section_instance_id": "DEMO-SEC-001", "material_line_id": "MAT-DEMO-005", "row_ordinal": 5, "raw_material_name": "Demo Humectant", "material_reference": "MAT-DEMO-005", "nominal_w_w_pct": 4.0, "target_weight_g": 6080, "actual_weight_g": 6083, "source_page": 2, "raw_value": "6,083 g", "normalized_value": "6083.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-EBR-001", "section_instance_id": "DEMO-SEC-001", "material_line_id": "MAT-DEMO-006", "row_ordinal": 6, "raw_material_name": "Demo Chelating Agent", "material_reference": "MAT-DEMO-006", "nominal_w_w_pct": 0.2, "target_weight_g": 304, "actual_weight_g": 305, "source_page": 2, "raw_value": "305 g", "normalized_value": "305.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-EBR-001", "section_instance_id": "DEMO-SEC-002", "material_line_id": "MAT-DEMO-007", "row_ordinal": 1, "raw_material_name": "Demo Active Complex A", "material_reference": "MAT-DEMO-007", "nominal_w_w_pct": 2.5, "target_weight_g": 2200, "actual_weight_g": 2199, "source_page": 3, "raw_value": "2,199 g", "normalized_value": "2199.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-EBR-001", "section_instance_id": "DEMO-SEC-002", "material_line_id": "MAT-DEMO-008", "row_ordinal": 2, "raw_material_name": "Demo Active Complex B", "material_reference": "MAT-DEMO-008", "nominal_w_w_pct": 1.8, "target_weight_g": 1584, "actual_weight_g": 1587, "source_page": 3, "raw_value": "1,587 g", "normalized_value": "1587.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-EBR-001", "section_instance_id": "DEMO-SEC-002", "material_line_id": "MAT-DEMO-009", "row_ordinal": 3, "raw_material_name": "Demo Preservative System", "material_reference": "MAT-DEMO-009", "nominal_w_w_pct": 0.9, "target_weight_g": 792, "actual_weight_g": 791, "source_page": 3, "raw_value": "791 g", "normalized_value": "791.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-EBR-001", "section_instance_id": "DEMO-SEC-002", "material_line_id": "MAT-DEMO-010", "row_ordinal": 4, "raw_material_name": "Demo Fragrance", "material_reference": "MAT-DEMO-010", "nominal_w_w_pct": 0.6, "target_weight_g": 528, "actual_weight_g": 529, "source_page": 4, "raw_value": "529 g", "normalized_value": "529.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-EBR-001", "section_instance_id": "DEMO-SEC-002", "material_line_id": "MAT-DEMO-011", "row_ordinal": 5, "raw_material_name": "Demo pH Adjuster", "material_reference": "MAT-DEMO-011", "nominal_w_w_pct": 0.3, "target_weight_g": 264, "actual_weight_g": 264, "source_page": 4, "raw_value": "264 g", "normalized_value": "264.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-EBR-001", "section_instance_id": "DEMO-SEC-002", "material_line_id": "MAT-DEMO-012", "row_ordinal": 6, "raw_material_name": "Demo Colorant", "material_reference": "MAT-DEMO-012", "nominal_w_w_pct": 0.1, "target_weight_g": 88, "actual_weight_g": 88, "source_page": 4, "raw_value": "88 g", "normalized_value": "88.0", "validation_status": "passed" }
+  ],
+  "qualityChecks": [
+    { "name": "Primary keys unique", "result": "PASS", "status": "passed", "detail": "All record, section and material identifiers are unique." },
+    { "name": "Foreign-key relationships", "result": "PASS", "status": "passed", "detail": "Every section maps to a record; every material row maps to a section." },
+    { "name": "Material row reconciliation", "result": "PASS", "status": "passed", "detail": "Sum of material weights reconciles to declared batch size within tolerance." },
+    { "name": "Source-page provenance", "result": "PASS", "status": "passed", "detail": "Every extracted value carries a source page reference." },
+    { "name": "Review flags", "result": "0 flags", "status": "passed", "detail": "No values required manual review for this deterministic extraction." }
+  ]
+}

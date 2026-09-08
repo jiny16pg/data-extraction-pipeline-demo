@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+
+# TypeScript / Vite build artifacts
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+
+# Local env files (never commit secrets)
+.env
+.env.*
+!.env.example
+
+# Local data / artifacts
+*.local
+*.pdf
+*.csv
+*.parquet
+data/local/
+
+# Editor / OS
+.DS_Store
+.vscode/
+*.log
+npm-debug.log*

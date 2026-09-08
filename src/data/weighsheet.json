@@ -1,0 +1,85 @@
+{
+  "id": "DEMO-WS-001",
+  "title": "Scanned Weigh Sheet",
+  "docType": "WS",
+  "cardSubtitle": "Scanned + handwritten · OCR/VLM extraction",
+  "tag": "Scanned PDF",
+  "disclaimer": "Pre-generated demonstration output · Static demonstration using synthetic data",
+  "overview": {
+    "documentType": "Scanned Weigh Sheet",
+    "processingMethod": "OCR/VLM + deterministic assembly",
+    "pages": 3,
+    "records": 1,
+    "sections": 2,
+    "materialRows": 9,
+    "validationStatus": "Validated · 1 warning"
+  },
+  "pipeline": [
+    { "label": "Scanned PDF", "detail": "Scanned + handwritten source" },
+    { "label": "OCR / VLM", "detail": "Recover page content" },
+    { "label": "Assemble", "detail": "Resolve records and sections" },
+    { "label": "Validate", "detail": "Consistency & provenance checks" },
+    { "label": "Tables", "detail": "Records, sections, materials" }
+  ],
+  "records": [
+    {
+      "record_instance_id": "DEMO-WS-001",
+      "record_ordinal": 1,
+      "document_code": "WS-DEMO-0457",
+      "description": "Demo Weigh Sheet — Manual Dispensing Log",
+      "production_date": "2026-03-16",
+      "manufacturing_site": "Demo Plant North",
+      "batch_size_g": 42000,
+      "source_page_start": 1,
+      "source_page_end": 3
+    }
+  ],
+  "sections": [
+    {
+      "record_instance_id": "DEMO-WS-001",
+      "section_instance_id": "DEMO-WS-SEC-001",
+      "section_ordinal": 1,
+      "batch_id": "DEMO-BATCH-101",
+      "formula_descriptor": "Demo Compounding Phase",
+      "variant": "Pilot",
+      "target_weight_g": 30000,
+      "target_ph": 5.8,
+      "target_viscosity": 1800,
+      "final_actual_ph": 5.79,
+      "final_actual_viscosity": 1815,
+      "source_pages": "1-2"
+    },
+    {
+      "record_instance_id": "DEMO-WS-001",
+      "section_instance_id": "DEMO-WS-SEC-002",
+      "section_ordinal": 2,
+      "batch_id": "DEMO-BATCH-102",
+      "formula_descriptor": "Demo Finishing Phase",
+      "variant": "Pilot",
+      "target_weight_g": 12000,
+      "target_ph": 6.0,
+      "target_viscosity": 1900,
+      "final_actual_ph": 6.02,
+      "final_actual_viscosity": 1888,
+      "source_pages": "3"
+    }
+  ],
+  "materialRows": [
+    { "record_instance_id": "DEMO-WS-001", "section_instance_id": "DEMO-WS-SEC-001", "material_line_id": "MAT-DEMO-101", "row_ordinal": 1, "raw_material_name": "Demo Solvent Base", "material_reference": "MAT-DEMO-101", "nominal_w_w_pct": 55.0, "target_weight_g": 16500, "actual_weight_g": 16480, "source_page": 1, "raw_value": "16,480 g", "normalized_value": "16480.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-WS-001", "section_instance_id": "DEMO-WS-SEC-001", "material_line_id": "MAT-DEMO-102", "row_ordinal": 2, "raw_material_name": "Demo Carrier Oil", "material_reference": "MAT-DEMO-102", "nominal_w_w_pct": 18.0, "target_weight_g": 5400, "actual_weight_g": 5390, "source_page": 1, "raw_value": "5,390 g", "normalized_value": "5390.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-WS-001", "section_instance_id": "DEMO-WS-SEC-001", "material_line_id": "MAT-DEMO-103", "row_ordinal": 3, "raw_material_name": "Demo Surfactant", "material_reference": "MAT-DEMO-103", "nominal_w_w_pct": 9.5, "target_weight_g": 2850, "actual_weight_g": 2860, "source_page": 1, "raw_value": "2,86O g", "normalized_value": "2860.0", "validation_status": "warning", "review_reason": "Handwritten value preserved; manual review recommended." },
+    { "record_instance_id": "DEMO-WS-001", "section_instance_id": "DEMO-WS-SEC-001", "material_line_id": "MAT-DEMO-104", "row_ordinal": 4, "raw_material_name": "Demo Conditioning Agent", "material_reference": "MAT-DEMO-104", "nominal_w_w_pct": 6.0, "target_weight_g": 1800, "actual_weight_g": 1804, "source_page": 2, "raw_value": "1,804 g", "normalized_value": "1804.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-WS-001", "section_instance_id": "DEMO-WS-SEC-001", "material_line_id": "MAT-DEMO-105", "row_ordinal": 5, "raw_material_name": "Demo Buffer Salt", "material_reference": "MAT-DEMO-105", "nominal_w_w_pct": 1.5, "target_weight_g": 450, "actual_weight_g": 451, "source_page": 2, "raw_value": "451 g", "normalized_value": "451.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-WS-001", "section_instance_id": "DEMO-WS-SEC-002", "material_line_id": "MAT-DEMO-106", "row_ordinal": 1, "raw_material_name": "Demo Finishing Polymer", "material_reference": "MAT-DEMO-106", "nominal_w_w_pct": 5.0, "target_weight_g": 600, "actual_weight_g": 598, "source_page": 3, "raw_value": "598 g", "normalized_value": "598.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-WS-001", "section_instance_id": "DEMO-WS-SEC-002", "material_line_id": "MAT-DEMO-107", "row_ordinal": 2, "raw_material_name": "Demo Opacifier", "material_reference": "MAT-DEMO-107", "nominal_w_w_pct": 2.0, "target_weight_g": 240, "actual_weight_g": 239, "source_page": 3, "raw_value": "239 g", "normalized_value": "239.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-WS-001", "section_instance_id": "DEMO-WS-SEC-002", "material_line_id": "MAT-DEMO-108", "row_ordinal": 3, "raw_material_name": "Demo Fragrance", "material_reference": "MAT-DEMO-108", "nominal_w_w_pct": 0.8, "target_weight_g": 96, "actual_weight_g": 96, "source_page": 3, "raw_value": "96 g", "normalized_value": "96.0", "validation_status": "passed" },
+    { "record_instance_id": "DEMO-WS-001", "section_instance_id": "DEMO-WS-SEC-002", "material_line_id": "MAT-DEMO-109", "row_ordinal": 4, "raw_material_name": "Demo Preservative", "material_reference": "MAT-DEMO-109", "nominal_w_w_pct": 0.4, "target_weight_g": 48, "actual_weight_g": 48, "source_page": 3, "raw_value": "48 g", "normalized_value": "48.0", "validation_status": "passed" }
+  ],
+  "qualityChecks": [
+    { "name": "Primary keys unique", "result": "PASS", "status": "passed", "detail": "All record, section and material identifiers are unique." },
+    { "name": "Foreign-key relationships", "result": "PASS", "status": "passed", "detail": "Every section maps to a record; every material row maps to a section." },
+    { "name": "Material row reconciliation", "result": "PASS", "status": "passed", "detail": "Sum of material weights reconciles to declared batch size within tolerance." },
+    { "name": "Source-page provenance", "result": "PASS", "status": "passed", "detail": "Every extracted value carries a source page reference." },
+    { "name": "Review flags", "result": "1 warning", "status": "warning", "detail": "Handwritten value preserved; manual review recommended. Uncertain characters are flagged rather than silently corrected." }
+  ]
+}
