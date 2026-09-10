@@ -1,5 +1,12 @@
 export type ValidationStatus = "passed" | "warning" | "flagged";
 
+export interface DocumentSelection {
+  fileName: string;
+  fileSize: number | null;
+  sampleId?: string;
+  file?: File;
+}
+
 export interface RecordRow {
   record_instance_id: string;
   record_ordinal: number;

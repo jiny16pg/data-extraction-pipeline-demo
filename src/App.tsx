@@ -1,145 +1,55 @@
-import { useState } from "react";
-import type { DemoDocument } from "./types";
-import UploadPanel, { type Selection } from "./components/UploadPanel";
-import WorkflowCapabilities from "./components/WorkflowCapabilities";
-import ProcessingState from "./components/ProcessingState";
-import DocumentWorkspace from "./components/DocumentWorkspace";
-import DocumentList from "./components/DocumentList";
+import { useRef, useState } from "react";
+import type { DemoDocument, DocumentSelection } from "./types";
+import BatchRecordDashboard from "./components/BatchRecordDashboard";
 import {
   createDocument,
   processDocument,
   getDocumentResult,
-  type DocumentMeta,
 } from "./services/documentService";
 
-type Screen = "home" | "processing" | "workspace" | "documents";
-
-function sampleFileName(sampleId: string): string {
-  return sampleId === "DEMO-WS-001"
-    ? "demo-scanned-weigh-sheet.pdf"
-    : "demo-electronic-batch-record.pdf";
-}
-
 export default function App() {
-  const [screen, setScreen] = useState<Screen>("home");
-  const [selection, setSelection] = useState<Selection | null>(null);
-  const [meta, setMeta] = useState<DocumentMeta | null>(null);
-  const [detected, setDetected] = useState(false);
+  const [selection, setSelection] = useState<DocumentSelection | null>(null);
   const [result, setResult] = useState<DemoDocument | null>(null);
-  const [workspaceFile, setWorkspaceFile] = useState<string | undefined>();
+  const [progress, setProgress] = useState(0);
+  const processingId = useRef(0);
 
-  function goHome() {
-    setScreen("home");
-    setSelection(null);
-    setMeta(null);
+  async function processSelection(nextSelection: DocumentSelection) {
+    const currentProcessingId = ++processingId.current;
+    setSelection(nextSelection);
     setResult(null);
-    setDetected(false);
-  }
-
-  async function runProcessing() {
-    if (!selection) return;
-    setScreen("processing");
-    setDetected(false);
+    setProgress(10);
     const createdMeta = await createDocument({
-      file: selection.file,
-      sampleId: selection.sampleId,
+      file: nextSelection.file,
+      sampleId: nextSelection.sampleId,
     });
-    setMeta(createdMeta);
-    setWorkspaceFile(createdMeta.fileName);
-    window.setTimeout(() => setDetected(true), 700);
-    await processDocument(createdMeta.documentId);
+    if (currentProcessingId !== processingId.current) return;
     const doc = await getDocumentResult(createdMeta.documentId);
     setResult(doc);
-    setScreen("workspace");
+    setProgress(25);
+    window.setTimeout(() => currentProcessingId === processingId.current && setProgress(50), 260);
+    window.setTimeout(() => currentProcessingId === processingId.current && setProgress(75), 520);
+    await processDocument(createdMeta.documentId);
+    if (currentProcessingId !== processingId.current) return;
+    setProgress(100);
   }
 
-  function openFromList(doc: DemoDocument) {
-    setResult(doc);
-    setWorkspaceFile(sampleFileName(doc.id));
-    setScreen("workspace");
+  function clearSession() {
+    processingId.current += 1;
+    setSelection(null);
+    setResult(null);
+    setProgress(0);
   }
 
   return (
     <div className="app">
-      <header className="app-header">
-        <div className="app-header__inner">
-          <button type="button" className="brand" onClick={goHome}>
-            Data Extraction Pipeline
-          </button>
-          <nav className="app-nav">
-            <button
-              type="button"
-              className={`nav-link ${screen === "home" ? "nav-link--active" : ""}`}
-              onClick={goHome}
-            >
-              Upload
-            </button>
-            <button
-              type="button"
-              className={`nav-link ${
-                screen === "documents" ? "nav-link--active" : ""
-              }`}
-              onClick={() => setScreen("documents")}
-            >
-              All documents
-            </button>
-          </nav>
-        </div>
-      </header>
-
-      <main className="main">
-        {screen === "home" && (
-          <section className="home">
-            <div className="hero">
-              <h1>Data Extraction Pipeline</h1>
-              <p className="hero__subtitle">
-                Transforming complex batch records into structured, traceable
-                data.
-              </p>
-              <span className="badge">Public Demo · Synthetic Data</span>
-            </div>
-
-            <UploadPanel
-              selection={selection}
-              onSelectFile={(file) =>
-                setSelection({ fileName: file.name, fileSize: file.size, file })
-              }
-              onSelectSample={(sampleId) =>
-                setSelection({
-                  fileName: sampleFileName(sampleId),
-                  fileSize: null,
-                  sampleId,
-                })
-              }
-              onClear={() => setSelection(null)}
-              onProcess={runProcessing}
-            />
-
-            <WorkflowCapabilities />
-          </section>
-        )}
-
-        {screen === "processing" && meta && (
-          <ProcessingState meta={meta} detected={detected} />
-        )}
-
-        {screen === "workspace" && result && (
-          <DocumentWorkspace
-            document={result}
-            fileName={workspaceFile}
-            onBack={() => setScreen("documents")}
-          />
-        )}
-
-        {screen === "documents" && <DocumentList onOpen={openFromList} />}
-      </main>
-
-      <footer className="app-footer">
-        <p>
-          Static public demonstration using synthetic data only. This site runs
-          entirely in the browser and does not connect to any production system.
-        </p>
-      </footer>
+      <BatchRecordDashboard
+        selection={selection}
+        result={result}
+        progress={progress}
+        onClear={clearSession}
+        onFile={(file) => void processSelection({ fileName: file.name, fileSize: file.size, file })}
+        onSample={(sampleId) => void processSelection({ fileName: sampleId === "DEMO-WS-001" ? "demo-weigh-sheet.pdf" : "demo-batch-record.pdf", fileSize: null, sampleId })}
+      />
     </div>
   );
 }

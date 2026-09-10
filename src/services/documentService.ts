@@ -2,7 +2,6 @@ import type { DemoDocument } from "../types";
 import { documents } from "../documents";
 
 export type WorkflowKind = "electronic" | "scanned";
-export type DocumentStatus = "processing" | "completed" | "error";
 
 export interface DocumentMeta {
   documentId: string;
@@ -65,30 +64,10 @@ export async function processDocument(documentId: string): Promise<void> {
   if (!registry.has(documentId)) throw new Error("Unknown document");
 }
 
-export async function getDocumentStatus(
-  documentId: string
-): Promise<DocumentStatus> {
-  return registry.has(documentId) ? "completed" : "error";
-}
-
 export async function getDocumentResult(
   documentId: string
 ): Promise<DemoDocument> {
   const entry = registry.get(documentId);
   if (!entry) throw new Error("Unknown document");
   return entry.result;
-}
-
-export async function getDocumentTable(
-  documentId: string,
-  tableName: "records" | "sections" | "materialRows" | "qualityChecks"
-): Promise<unknown[]> {
-  const entry = registry.get(documentId);
-  if (!entry) throw new Error("Unknown document");
-  return entry.result[tableName];
-}
-
-/** Static catalog used by the All Documents view. */
-export function listSampleDocuments(): DemoDocument[] {
-  return documents;
 }
