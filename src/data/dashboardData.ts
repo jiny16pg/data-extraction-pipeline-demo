@@ -54,6 +54,7 @@ export function getTableRows(
           batch_id: section.batch_id,
           measurement: "pH",
           value: section.final_actual_ph,
+          unit: "",
           source_pages: section.source_pages,
         },
         {

@@ -101,7 +101,7 @@ export default function StructuredTables({ document, fileName }: StructuredTable
               <thead>
                 <tr>
                   {columns.map((column) => (
-                    <th key={column}>{column.replaceAll("_", " ")}</th>
+                    <th key={column}>{column.split("_").join(" ")}</th>
                   ))}
                 </tr>
               </thead>
